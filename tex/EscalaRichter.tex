@@ -1,0 +1,70 @@
+\subsection{Escala Richter: Da Amplitude à Escala Destrutiva}
+Durante os noticiários sobre desastres naturais, frequentemente a intensidade dos terremotos é quantificada por um número na Escala de Magnitude Richter com o intuito de evidenciar a magnitude da perda material e humanitária encadeada pela energia liberada do tremor.
+
+Mas afinal, como surgiu e como interpreto a escala? Desenvolvida em meados da década de 1930 pelos pesquisadores Charles Richter e Beno Gutenberg, da Caltech, a Escala Richter originou-se da necessidade de condensar um conjunto denso de dados de um sismógrafo em um único número, de forma concisa e intuitiva. Para isso, propuseram a seguinte fórmula:
+
+\begin{equation}
+    M = \log_{10}\left(\frac{A}{A_0}\right)
+\end{equation}
+
+onde $A$ é a amplitude máxima da onda sísmica registrada e $A_0$ é uma amplitude de referência. É importante notar que $A_0$ não é uma constante; seu valor depende da distância entre o sismógrafo e o epicentro do terremoto.
+
+Em virtude da natureza logarítmica da fórmula, um acréscimo de apenas uma unidade na escala não representa um aumento linear, mas sim um aumento exponencial na intensidade do tremor. Aplicando a definição de logaritmo, podemos isolar a amplitude $A$:
+
+\begin{equation}
+    M = \log_{10}\left(\frac{A}{A_0}\right) \iff A = 10^{M} \cdot A_0
+\end{equation}
+
+Para compreender melhor, podemos comparar a amplitude de um terremoto de magnitude $M$ (denotaremos a amplitude do tremor com magnitude $M$ por meio de $A_M$) com a de um terremoto de magnitude $M+1$:
+
+\begin{equation*}
+\begin{cases}
+    A_M = 10^{M} \cdot A_0 \\
+    A_{M+1} = 10^{M+1} \cdot A_0
+\end{cases}
+\quad\Longrightarrow\quad A_{M+1} = 10 \cdot A_M
+\end{equation*}
+
+Daí, vemos que o aumento de apenas um ponto na Escala Richter corresponde a um tremor com amplitude 10 vezes maior.
+
+Ademais, perceba que tal resultado é referente ao tremor e não necessariamente sobre sua capacitdade destrutiva. Dessa maneira, a fim de ilustrar o potencial destrutivo do acréscimo de uma unidade na Escala Richter introduziremos o conceito de energia:
+
+\begin{equation*}
+    E_M \propto A^{3/2} \iff E_M = k \cdot A^{3/2}
+\end{equation*}
+
+Denotando a energia liberada por um terremoto de escala $M+1$ por $E_{M+1}$, temos que:
+
+\begin{align*}
+    E_{M+1} &\propto (A_{M+1})^{3/2} \\
+            &= (10 \cdot A_M)^{3/2} \\
+            &= 10^{3/2} \cdot (A_M)^{3/2} \\
+            &\propto 10^{3/2} \cdot E_M
+\end{align*}
+
+Perceba que, $10^{3/2} \approx 31,6$, isto é, a capacidade destrutiva do tremor é 31,6 vezes maior ao aumentar uma unidade na escala, e o impacto sobre a realidade pode ser percebido através da seguinte tabela:
+
+\begin{table}[h!]
+\centering
+\caption{Efeitos por Magnitude na Escala Richter}
+\label{tab:richter_simples}
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Magnitude} & \textbf{Descrição dos Efeitos} \\
+\hline
+1--3 & Nada / Imperceptível \\
+3--4 & Perceptível, sem danos \\
+4--5 & Danos domésticos \\
+5--6 & Danos em prédios sem estrutura adequada \\
+6--7 & Danos em prédios normais \\
+7--8 & Danos sérios \\
+8--9 & Destruição de cidades \\
+9--10 & Muda a topografia \\
+$>10$ & Desconhecido / Catástrofe global \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+Fica claro, portanto, que o conceito introduzido por John Napier em 1614 transcende a matemática abstrata. O real conhecimento dos logaritmos permite uma análise crítica da realidade. Diferentemente do que o senso comum poderia sugerir, um terremoto de magnitude 10 não causa o dobro da destruição de um de magnitude 5. Na verdade, seu poder destrutivo é cerca de 31 milhões de vezes maior. Ter essa percepção nos ajuda a compreender melhor a magnitude dos fenômenos que nos rodeiam e analisá-los com senso crítico.
