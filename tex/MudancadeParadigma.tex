@@ -1,1 +1,39 @@
-\subsection{Mudança de Paradigma}
+\subsection*{Logaritmo na Atualidade}
+
+O advento do logaritmo natural, consolidado por Leonhard Euler, representou uma mudança de paradigma fundamental na matemática, suplantando a relevância dos sistemas anteriores, como os de John Napier e os logaritmos decimais (base 10). Originalmente, o logaritmo surgiu como uma ferramenta computacional, cujo propósito era simplificar cálculos complexos de multiplicação, divisão e potenciação em uma era pré-computadores. Com o surgimento das calculadoras e computadores, essa função original tornou-se obsoleta. A capacidade de realizar cálculos aritméticos de forma instantânea deslocou o foco do logaritmo: de uma ferramenta de cálculo para um conceito central no desenvolvimento teórico e prático da matemática.
+
+Atualmente, o logaritmo natural está intrinsecamente ligado ao cálculo diferencial e integral. A base $e$ (o número de Euler) possui propriedades matemáticas vantajosas que simplificam enormemente as operações de diferenciação e integração. Como a função $\ln(x)$ é a primitiva de $\frac{1}{x}$ e a inversa da função exponencial $e^x$ (cuja derivada é ela mesma), ela se torna a linguagem natural para descrever e resolver problemas em inúmeras áreas da ciência e engenharia. Assim, o logaritmo deixou de ser uma ferramenta para fazer contas mecânicas e se tornou um pilar para resolver problemas impraticáveis.
+
+A seguir, ilustramos essa mudança de paradigma com uma aplicação fundamental em Inferência Estatística.
+
+\subsubsection*{Exemplo: O Estimador de Máxima Verossimilhança (EMV) da Normal}
+Seja $X_1, X_2, \ldots, X_n$ uma amostra aleatória i.i.d. de uma distribuição Normal $N(\mu, \sigma^2)$. A Função de Densidade de Probabilidade (FDP) de cada observação $x_i$ é:
+\[
+f(x_i \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left( -\frac{(x_i-\mu)^2}{2\sigma^2} \right)
+\]
+
+\paragraph{Função de Verossimilhança .}
+A função de verossimilhança $L(\mu, \sigma^2 \mid \mathbf{x})$ é o produto das FDPs:
+\begin{equation} \label{eq:likelihood}
+    L(\mu, \sigma^2 \mid \mathbf{x}) = \left( \frac{1}{2\pi\sigma^2} \right)^{n/2} \exp\left( -\frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i-\mu)^2 \right)
+\end{equation}
+
+\paragraph{Função de Log-Verossimilhança.}
+Para encontrar os parâmetros que maximizam a função de verossimilhança, o caminho direto seria derivar a Equação (\ref{eq:likelihood}) em relação a $\mu$ e $\sigma^2$. No entanto, derivar um produto de $n$ funções exponenciais precisaria de aplicações sucessivas e complexas da Regra do Produto, tornando o problema analiticamente complexo.
+
+Daí, o logaritmo demonstra sua usabilidade moderna. A chave para sua aplicação é que por ser uma função estritamente crescente, encontrar os pontos críticos de $L(\theta)$ é equivalente a encontrar os pontos críticos de $\ln(L(\theta))$. Ao aplicar o logaritmo natural, transformamos o produto complexo em uma soma factível, a log-verossimilhança $\ell(\mu, \sigma^2)$:
+\begin{align*}
+    \ell(\mu, \sigma^2 \mid \mathbf{x}) &= \ln\left[ L(\mu, \sigma^2 \mid \mathbf{x}) \right] \\
+    &= -\frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i-\mu)^2
+\end{align*}
+
+\paragraph{Maximização.}
+Agora, derivar esta soma em relação a $\mu$ e $\sigma^2$ e igualar a zero torna-se uma tarefa simples de cálculo. Resolvendo o sistema de equações resultante, encontramos os EMVs:
+\begin{itemize}
+    \item \textbf{Para a média $\mu$:} A média amostral.
+          \[ \hat{\mu}_{ML} = \bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i \]
+    \item \textbf{Para a variância $\sigma^2$:} A variância amostral com denominador $n$.
+          \[ \hat{\sigma}^2_{ML} = \frac{1}{n}\sum_{i=1}^{n} (x_i-\bar{x})^2 \]
+\end{itemize}
+
+Portanto, o exemplo demonstra perfeitamente a "nova" aplicação do logaritmo. Ele não foi usado para facilitar um cálculo aritmético, mas sim para transformar um problema analítico hercúlico em um que é solucionável. O logaritmo deixou de ser uma ferramenta para o cálculo mecânico para se tornar uma ferramenta indispensável para a simplificação da própria análise matemática.

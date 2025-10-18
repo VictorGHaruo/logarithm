@@ -1,0 +1,76 @@
+\subsection{Logaritmo na Atualidade}
+
+O advento do logaritmo natural, consolidado por Leonhard Euler, representou uma mudança de paradigma fundamental na matemática, suplantando a relevância dos sistemas anteriores, como os de John Napier e os logaritmos decimais (base 10). Originalmente, o logaritmo surgiu como uma ferramenta computacional, cujo propósito era simplificar cálculos complexos de multiplicação, divisão e potenciação em uma era pré-computadores. Com o surgimento das calculadoras e computadores, essa função original tornou-se obsoleta. A capacidade de realizar cálculos aritméticos de forma instantânea deslocou o foco do logaritmo: de uma ferramenta de cálculo para um conceito central no desenvolvimento teórico e prático da matemática. Atualmente, a proeminência do logaritmo natural está intrinsecamente ligada ao cálculo diferencial e integral. A base $e$ (o número de Euler) possui propriedades matemáticas únicas que simplificam enormemente as operações de diferenciação e integração. Como a função $\ln(x)$ é a primitiva de $\frac{1}{x}$ e a inversa da função exponencial $e^x$ (cuja derivada é ela mesma), ela se torna a linguagem natural para descrever e resolver problemas em inúmeras áreas da ciência e engenharia. Assim, o logaritmo deixou de ser uma ferramenta para "fazer contas" e se tornou um pilar para "descrever o mundo".
+
+Um exemplo direto dessa mudança de paradigmas é na Inferência Estatística, na vertente frequentista para se estimar uma parâmetro do 
+
+Seja $X_1, X_2, \ldots, X_n$ uma amostra aleatória independente e identicamente distribuída (i.i.d.) de uma distribuição Normal com média $\mu$ e variância $\sigma^2$. A função de densidade de probabilidade (FDP) de cada observação $x_i$ é:
+\[
+f(x_i \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left( -\frac{(x_i-\mu)^2}{2\sigma^2} \right)
+\]
+
+\section{Função de Verossimilhança (Likelihood)}
+A função de verossimilhança $L(\mu, \sigma^2 \mid \mathbf{x})$ é o produto das densidades de probabilidade de cada observação, devido à independência da amostra.
+\begin{align*}
+    L(\mu, \sigma^2 \mid \mathbf{x}) &= \prod_{i=1}^{n} f(x_i \mid \mu, \sigma^2) \\
+                                   &= \prod_{i=1}^{n} \frac{1}{(2\pi\sigma^2)^{1/2}} \exp\left( -\frac{(x_i-\mu)^2}{2\sigma^2} \right)
+\end{align*}
+Simplificando o produto, obtemos:
+\[
+L(\mu, \sigma^2 \mid \mathbf{x}) = \left( \frac{1}{2\pi\sigma^2} \right)^{n/2} \exp\left( -\frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i-\mu)^2 \right)
+\]
+
+\section{Função de Log-Verossimilhança (Log-Likelihood)}
+Para facilitar a derivação, tomamos o logaritmo natural da função de verossimilhança, que denotamos por $\ell(\mu, \sigma^2)$. Isso transforma produtos em somas.
+\begin{align*}
+    \ell(\mu, \sigma^2 \mid \mathbf{x}) &= \ln\left[ L(\mu, \sigma^2 \mid \mathbf{x}) \right] \\
+    &= \ln\left[ \left( \frac{1}{2\pi\sigma^2} \right)^{n/2} \right] + \ln\left[ \exp\left( -\frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i-\mu)^2 \right) \right] \\
+    &= -\frac{n}{2} \ln(2\pi\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i-\mu)^2 \\
+    &= -\frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i-\mu)^2
+\end{align*}
+
+\section{Maximização da Função de Log-Verossimilhança}
+Para encontrar os valores de $\mu$ e $\sigma^2$ que maximizam $\ell$, calculamos as derivadas parciais em relação a cada parâmetro e as igualamos a zero.
+
+\subsection{Derivada em relação a \(\mu\)}
+\begin{align*}
+    \frac{\partial \ell}{\partial \mu} &= \frac{\partial}{\partial \mu} \left[ -\frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i-\mu)^2 \right] \\
+    &= -\frac{1}{2\sigma^2} \sum_{i=1}^{n} 2(x_i-\mu)(-1) = \frac{1}{\sigma^2} \sum_{i=1}^{n} (x_i-\mu)
+\end{align*}
+Igualando a zero:
+\begin{align*}
+    \frac{1}{\sigma^2} \sum_{i=1}^{n} (x_i-\mu) &= 0 \\
+    \sum_{i=1}^{n} x_i - \sum_{i=1}^{n} \mu &= 0 \\
+    \sum_{i=1}^{n} x_i - n\mu &= 0
+\end{align*}
+Resolvendo para $\mu$, obtemos o EMV de $\mu$:
+\[
+\hat{\mu}_{ML} = \frac{\sum_{i=1}^{n} x_i}{n} = \bar{x}
+\]
+
+\subsection{Derivada em relação a \(\sigma^2\)}
+\begin{align*}
+    \frac{\partial \ell}{\partial \sigma^2} &= \frac{\partial}{\partial \sigma^2} \left[ -\frac{n}{2} \ln(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i-\mu)^2 \right] \\
+    &= -\frac{n}{2} \frac{1}{\sigma^2} - \left( -\frac{1}{2(\sigma^2)^2} \right) \sum_{i=1}^{n} (x_i-\mu)^2 \\
+    &= -\frac{n}{2\sigma^2} + \frac{1}{2(\sigma^2)^2} \sum_{i=1}^{n} (x_i-\mu)^2
+\end{align*}
+Igualando a zero:
+\begin{align*}
+    -\frac{n}{2\sigma^2} + \frac{1}{2(\sigma^2)^2} \sum_{i=1}^{n} (x_i-\mu)^2 &= 0 \\
+    \frac{1}{2(\sigma^2)^2} \sum_{i=1}^{n} (x_i-\mu)^2 &= \frac{n}{2\sigma^2} \\
+    \sum_{i=1}^{n} (x_i-\mu)^2 &= n\sigma^2
+\end{align*}
+Resolvendo para $\sigma^2$ e substituindo $\mu$ pelo seu estimador $\hat{\mu}_{ML} = \bar{x}$, obtemos o EMV de $\sigma^2$:
+\[
+\hat{\sigma}^2_{ML} = \frac{\sum_{i=1}^{n} (x_i-\bar{x})^2}{n}
+\]
+
+\section{Conclusão: Os Estimadores de Máxima Verossimilhança}
+Os EMVs para os parâmetros $\mu$ e $\sigma^2$ da distribuição Normal são:
+\begin{itemize}
+    \item \textbf{Para a média $\mu$:} A média amostral.
+          \[ \hat{\mu}_{ML} = \bar{x} \]
+    \item \textbf{Para a variância $\sigma^2$:} A variância amostral com denominador $n$.
+          \[ \hat{\sigma}^2_{ML} = \frac{1}{n}\sum_{i=1}^{n} (x_i-\bar{x})^2 \]
+\end{itemize}
+\textbf{Nota:} É importante lembrar que o EMV para a variância, $\hat{\sigma}^2_{ML}$, é um estimador \textbf{viesado} (tendencioso). O estimador não viesado da variância utiliza o denominador $n-1$.
