@@ -7,7 +7,7 @@ https://en.wikipedia.org/wiki/Richter_scale
 https://www.youtube.com/watch?v=JFw9ihPyrMI&t=317s
 
 Logaritmo Atualmente
-DeGroot
+DeGroot, probabilty and statistcs
 
 Outras Vertentes
 https://en.wikipedia.org/wiki/Henry_Briggs_(mathematician)
@@ -17,5 +17,8 @@ https://locomat.loria.fr/buergi1620/buergi1620doc.pdf
 https://old.maa.org/press/periodicals/convergence/logarithms-the-early-history-of-a-familiar-function-joost-b-rgi-introduces-logarithms
 
 Logaritmo Natural
-https://www.youtube.com/watch?v=jV49W0lY0OM
 https://www.youtube.com/watch?v=habHK6wLkic
+
+pH:
+https://repositorio.unesp.br/server/api/core/bitstreams/e4f2fbc5-c42d-475d-a1f1-5cfc26564238/content
+https://brasilescola.uol.com.br/o-que-e/quimica/o-que-e-ph.htm
